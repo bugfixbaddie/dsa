@@ -3,23 +3,25 @@ public:
     int pivotIndex(vector<int>& nums) {
         int n = nums.size();
 
-        for (int pivot = 0; pivot < n; pivot++) {
+        // Build prefix sum array
+        for (int i = 1; i < n; i++) {
+            nums[i] += nums[i - 1];
+        }
 
-            int leftSum = 0;
-            int rightSum = 0;
+        int total = nums[n - 1];
 
-            
-            for (int i = 0; i < pivot; i++) {
-                leftSum += nums[i];
-            }
+        for (int i = 0; i < n; i++) {
+            int left, right;
 
-            
-            for (int i = pivot + 1; i < n; i++) {
-                rightSum += nums[i];
-            }
+            if (i == 0)
+                left = 0;
+            else
+                left = nums[i - 1];
 
-            if (leftSum == rightSum)
-                return pivot;
+            right = total - nums[i];
+
+            if (left == right)
+                return i;
         }
 
         return -1;
