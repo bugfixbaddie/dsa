@@ -10,8 +10,6 @@ long long mod=1e9+7;
    ans%=mod;
    return ans;
    }
-
-
     int countGoodNumbers(long long n) {
         long long odd=n/2;
         long long even = n/2+n%2;
